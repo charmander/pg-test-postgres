@@ -1,3 +1,5 @@
 FROM docker.io/library/postgres@sha256:82c335ccb6b60941cb860cbb8252c12f63fd3e27a0d15bce5bc6de110c02a2b4
 LABEL org.opencontainers.image.source https://github.com/charmander/pg-test-postgres
+COPY --chown=postgres:postgres pg-test-ssl /pg-test-ssl
+RUN chmod 0600 /pg-test-ssl/*.key
 COPY password.sh ssl.sh /docker-entrypoint-initdb.d/
